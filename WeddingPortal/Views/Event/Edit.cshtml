@@ -1,0 +1,38 @@
+﻿@model WeddingPortal.Models.Event
+
+<h2>Create Event</h2>
+
+<form asp-action="Edit">
+
+    <input type="hidden"
+           asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Title"></label>
+        <input asp-for="Title"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Location"></label>
+        <input asp-for="Location"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EventDate"></label>
+        <input asp-for="EventDate"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description"
+                  class="form-control"></textarea>
+    </div>
+
+    <button class="btn btn-success">
+        Save Event
+    </button>
+
+</form>

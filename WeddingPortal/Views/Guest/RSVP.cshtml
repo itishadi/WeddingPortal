@@ -1,0 +1,50 @@
+﻿@model WeddingPortal.Models.Guest
+
+<h2>RSVP</h2>
+
+<form asp-action="RSVP" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NumberOfAttendants"></label>
+        <input asp-for="NumberOfAttendants"
+               class="form-control" />
+    </div>
+
+    <div class="form-check">
+
+        <input asp-for="WillAttend"
+               class="form-check-input" />
+
+        <label asp-for="WillAttend"
+               class="form-check-label">
+        </label>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Message"></label>
+
+        <textarea asp-for="Message"
+                  class="form-control">
+        </textarea>
+
+    </div>
+
+    <button class="btn btn-success">
+        Save RSVP
+    </button>
+
+</form>

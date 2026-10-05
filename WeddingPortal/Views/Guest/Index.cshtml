@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WeddingPortal.Models.Guest>
+
+<h2>Guest List</h2>
+
+<a asp-action="Create" class="btn btn-success">
+    Add Guest
+</a>
+
+<table class="table mt-3">
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Attend</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var guest in Model)
+        {
+            <tr>
+                <td>@guest.Name</td>
+                <td>@guest.Email</td>
+                <td>@guest.WillAttend</td>
+
+                <td>
+
+                    <a asp-action="Details"
+                       asp-route-id="@guest.Id"
+                       class="btn btn-info">
+                        Details
+                    </a>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@guest.Id"
+                       class="btn btn-warning">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@guest.Id"
+                       class="btn btn-danger">
+                        Delete
+                    </a>
+
+                    <a asp-action="RSVP"
+                       asp-route-id="@guest.Id"
+                       class="btn btn-primary">
+                        RSVP
+                    </a>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

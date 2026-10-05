@@ -1,0 +1,76 @@
+﻿<h1>Administration Dashboard</h1>
+
+@model WeddingPortal.ViewModels.AdminDashboardViewModel
+
+<h2>Admin Dashboard</h2>
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <div class="card p-3">
+
+            <h4>Total Guests</h4>
+
+            <h2>@Model.TotalGuests</h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card p-3">
+
+            <h4>Attending Guests</h4>
+
+            <h2>@Model.AttendingGuests</h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card p-3">
+
+            <h4>Not Attending</h4>
+
+            <h2>@Model.NotAttendingGuests</h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+<br />
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div class="card p-3">
+
+            <h4>Total Attendants</h4>
+
+            <h2>@Model.TotalAttendants</h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card p-3">
+
+            <h4>Total Events</h4>
+
+            <h2>@Model.TotalEvents</h2>
+
+        </div>
+
+    </div>
+
+</div>
+

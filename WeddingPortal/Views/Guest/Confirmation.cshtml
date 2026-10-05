@@ -1,0 +1,22 @@
+﻿@model WeddingPortal.Models.Guest
+
+@if (Model.WillAttend)
+{
+    <h2>
+        Thank you @Model.Name!
+    </h2>
+
+    <p>
+        We are happy that you will attend.
+    </p>
+}
+else
+{
+    <h2>
+        Thank you for your response.
+    </h2>
+
+    <p>
+        We appreciate your confirmation.
+    </p>
+}
