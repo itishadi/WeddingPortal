@@ -1,1 +1,108 @@
-﻿
+﻿@model IEnumerable<WeddingInfo>
+
+@{
+    ViewData["Title"] = "Om bröllopet";
+}
+
+<section class="page-header">
+
+    <span class="section-label">
+        Vår stora dag
+    </span>
+
+    <h1>Om bröllopet</h1>
+
+    <p>
+        Här hittar du viktig information inför vår bröllopsdag.
+    </p>
+
+</section>
+
+@if (Model.Any())
+{
+    foreach (var info in Model)
+    {
+        <div class="info-grid">
+
+            <article class="info-card">
+
+                <div class="info-card-icon">
+                    ♡
+                </div>
+
+                <h2>Välkommen</h2>
+
+                <p>
+                    @info.WelcomeMessage
+                </p>
+
+            </article>
+
+            <article class="info-card">
+
+                <div class="info-card-icon">
+                    ♧
+                </div>
+
+                <h2>Plats</h2>
+
+                <p>
+                    @info.VenueInformation
+                </p>
+
+            </article>
+
+            <article class="info-card">
+
+                <div class="info-card-icon">
+                    ✉
+                </div>
+
+                <h2>Kontakt</h2>
+
+                <p>
+                    @info.ContactInformation
+                </p>
+
+            </article>
+
+        </div>
+
+        <div class="page-actions">
+
+            <a asp-action="Edit"
+               asp-route-id="@info.Id"
+               class="wedding-button">
+                Ändra information
+            </a>
+
+            <a asp-action="Delete"
+               asp-route-id="@info.Id"
+               class="wedding-button wedding-button-outline">
+                Ta bort
+            </a>
+
+        </div>
+    }
+}
+else
+{
+    <div class="empty-state">
+
+        <div class="empty-heart">
+            ♡
+        </div>
+
+        <h2>Ingen information ännu</h2>
+
+        <p>
+            Lägg till information om bröllopet.
+        </p>
+
+        <a asp-action="Create"
+           class="wedding-button">
+            Lägg till information
+        </a>
+
+    </div>
+}

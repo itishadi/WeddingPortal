@@ -1,4 +1,4 @@
-﻿<h1>Welcome to Wedding Portal</h1>
+﻿@* <h1>Welcome to Wedding Portal</h1>
 
 <p>
     Welcome to our wedding website.
@@ -7,4 +7,76 @@
 <p>
     Here you can register, RSVP and
     view event information.
-</p>
+</p> *@
+
+@{
+    ViewData["Title"] = "Hem";
+}
+
+<section class="hero-section">
+
+    <div class="hero-content">
+
+        <span class="hero-small-title">
+            Vår stora dag
+        </span>
+
+        <h1>
+            Välkommen till vårt bröllop
+        </h1>
+
+        <p class="hero-description">
+            Vi är så glada att få dela denna speciella dag
+            med våra nära och kära.
+        </p>
+
+        <div class="hero-divider">
+            <span>♡</span>
+        </div>
+
+        <div class="hero-actions">
+
+            <a asp-controller="Guest"
+               asp-action="RSVP"
+               class="wedding-button">
+                OSA
+            </a>
+
+            <a asp-controller="Event"
+               asp-action="Index"
+               class="wedding-button wedding-button-outline">
+                Se evenemang
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="welcome-section">
+
+    <div class="welcome-card">
+
+        <span class="section-label">
+            Kärlek · Glädje · Gemenskap
+        </span>
+
+        <h2>
+            Vi längtar efter att fira med dig
+        </h2>
+
+        <p>
+            Här hittar du all information om vår bröllopsdag,
+            evenemang och möjlighet att svara på vår OSA.
+        </p>
+
+        <a asp-controller="WeddingInfo"
+           asp-action="Index"
+           class="text-link">
+            Läs mer om bröllopet →
+        </a>
+
+    </div>
+
+</section>

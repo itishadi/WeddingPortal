@@ -1,4 +1,4 @@
-﻿@model WeddingPortal.Models.Event
+﻿@* @model WeddingPortal.Models.Event
 
 <h2>Create Event</h2>
 
@@ -32,4 +32,125 @@
         Save Event
     </button>
 
-</form>
+</form> *@
+@model Event
+
+@{
+    ViewData["Title"] = "Lägg till evenemang";
+}
+
+<section class="form-page">
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <span class="section-label">
+                Evenemang
+            </span>
+
+            <h1>Lägg till evenemang</h1>
+
+            <p>
+                Lägg till information om ett evenemang under
+                bröllopsdagen.
+            </p>
+
+        </div>
+
+        <form asp-action="Create"
+              method="post">
+
+            <div asp-validation-summary="ModelOnly"
+                 class="validation-summary">
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Title">
+                    Titel
+                </label>
+
+                <input asp-for="Title"
+                       class="form-control"
+                       placeholder="Exempel: Vigsel" />
+
+                <span asp-validation-for="Title"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Location">
+                    Plats
+                </label>
+
+                <input asp-for="Location"
+                       class="form-control"
+                       placeholder="Exempel: Uppsala domkyrka" />
+
+                <span asp-validation-for="Location"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="EventDate">
+                    Datum och tid
+                </label>
+
+                <input asp-for="EventDate"
+                       class="form-control"
+                       type="datetime-local" />
+
+                <span asp-validation-for="EventDate"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Description">
+                    Beskrivning
+                </label>
+
+                <textarea asp-for="Description"
+                          class="form-control"
+                          rows="6"
+                          placeholder="Beskriv evenemanget...">
+                </textarea>
+
+                <span asp-validation-for="Description"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-actions">
+
+                <button type="submit"
+                        class="wedding-button">
+                    Spara evenemang
+                </button>
+
+                <a asp-action="Index"
+                   class="wedding-button wedding-button-outline">
+                    Avbryt
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

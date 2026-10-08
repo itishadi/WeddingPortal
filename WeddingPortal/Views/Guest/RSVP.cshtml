@@ -1,4 +1,4 @@
-﻿@model WeddingPortal.Models.Guest
+﻿@* @model WeddingPortal.Models.Guest
 
 <h2>RSVP</h2>
 
@@ -47,4 +47,169 @@
         Save RSVP
     </button>
 
-</form>
+</form> *@
+
+@model RSVPViewModel
+
+@{
+    ViewData["Title"] = "OSA";
+}
+
+<section class="form-page">
+
+    <div class="form-card">
+
+        <div class="form-header">
+            <span class="section-label">OSA</span>
+
+            <h1>Svara på inbjudan</h1>
+
+            <p>
+                Fyll i dina uppgifter och meddela om du kommer
+                på vår stora dag.
+            </p>
+        </div>
+
+        <form asp-action="RSVP"
+              asp-route-id="@Model.GuestId"
+              method="post">
+
+            <input asp-for="GuestId" type="hidden" />
+
+            <div asp-validation-summary="ModelOnly"
+                 class="validation-summary">
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Name">
+                    Namn
+                </label>
+
+                <input asp-for="Name"
+                       class="form-control" />
+
+                <span asp-validation-for="Name"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Email">
+                    E-post
+                </label>
+
+                <input asp-for="Email"
+                       class="form-control" />
+
+                <span asp-validation-for="Email"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="PhoneNumber">
+                    Telefonnummer
+                </label>
+
+                <input asp-for="PhoneNumber"
+                       class="form-control" />
+
+                <span asp-validation-for="PhoneNumber"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="WillAttend">
+                    Kommer du på bröllopet?
+                </label>
+
+                <select asp-for="WillAttend"
+                        class="form-select">
+
+                    <option value="">
+                        Välj ett svar
+                    </option>
+
+                    <option value="true">
+                        Ja, jag kommer
+                    </option>
+
+                    <option value="false">
+                        Nej, jag kan inte komma
+                    </option>
+
+                </select>
+
+                <span asp-validation-for="WillAttend"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="NumberOfAttendants">
+                    Antal personer
+                </label>
+
+                <input asp-for="NumberOfAttendants"
+                       class="form-control"
+                       type="number"
+                       min="0"
+                       max="10" />
+
+                <span asp-validation-for="NumberOfAttendants"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Message">
+                    Meddelande
+                </label>
+
+                <textarea asp-for="Message"
+                          class="form-control"
+                          rows="5"
+                          placeholder="Skriv gärna ett meddelande...">
+                </textarea>
+
+                <span asp-validation-for="Message"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-actions">
+
+                <button type="submit"
+                        class="wedding-button">
+                    Skicka OSA
+                </button>
+
+                <a asp-action="Index"
+                   class="wedding-button wedding-button-outline">
+                    Avbryt
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

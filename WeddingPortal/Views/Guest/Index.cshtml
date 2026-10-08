@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WeddingPortal.Models.Guest>
+﻿@* @model IEnumerable<WeddingPortal.Models.Guest>
 
 <h2>Guest List</h2>
 
@@ -58,4 +58,260 @@
 
     </tbody>
 
-</table>
+</table> *@
+
+@model IEnumerable<Guest>
+
+@{
+    ViewData["Title"] = "Gäster";
+}
+
+<section class="page-header">
+    <span class="section-label">Gästhantering</span>
+
+    <h1>Gästlista</h1>
+
+    <p>
+        Sök, filtrera och hantera registrerade gäster.
+    </p>
+</section>
+
+<div class="guest-toolbar">
+
+    <form asp-action="Index"
+          method="get"
+          class="guest-search-form">
+
+        <div class="search-group">
+
+            <input type="text"
+                   name="search"
+                   value="@ViewBag.Search"
+                   class="form-control"
+                   placeholder="Sök efter namn eller e-post..." />
+
+            <button type="submit"
+                    class="wedding-button">
+                Sök
+            </button>
+
+        </div>
+
+        <div class="filter-group">
+
+            <select name="filter"
+                    class="form-select">
+
+                <option value="">Alla gäster</option>
+
+                @if (ViewBag.Filter == "attending")
+                {
+                    <option value="attending" selected>
+                        Kommer
+                    </option>
+                }
+                else
+                {
+                    <option value="attending">
+                        Kommer
+                    </option>
+                }
+
+                @if (ViewBag.Filter == "notattending")
+                {
+                    <option value="notattending" selected>
+                        Kommer inte
+                    </option>
+                }
+                else
+                {
+                    <option value="notattending">
+                        Kommer inte
+                    </option>
+                }
+
+                @if (ViewBag.Filter == "notanswered")
+                {
+                    <option value="notanswered" selected>
+                        Inte svarat
+                    </option>
+                }
+                else
+                {
+                    <option value="notanswered">
+                        Inte svarat
+                    </option>
+                }
+
+            </select>
+
+            <select name="sort"
+                    class="form-select">
+
+                <option value="">Sortera efter namn</option>
+
+                <option value="name-desc"
+                        selected="@(ViewBag.Sort == "name-desc")">
+                    Namn Z–A
+                </option>
+
+                <option value="email"
+                        selected="@(ViewBag.Sort == "email")">
+                    E-post A–Ö
+                </option>
+
+                <option value="email-desc"
+                        selected="@(ViewBag.Sort == "email-desc")">
+                    E-post Ö–A
+                </option>
+
+                <option value="attendants"
+                        selected="@(ViewBag.Sort == "attendants")">
+                    Antal gäster ↑
+                </option>
+
+                <option value="attendants-desc"
+                        selected="@(ViewBag.Sort == "attendants-desc")">
+                    Antal gäster ↓
+                </option>
+
+            </select>
+
+            <button type="submit"
+                    class="wedding-button wedding-button-outline">
+                Uppdatera
+            </button>
+
+        </div>
+
+    </form>
+
+    <a asp-action="Create"
+       class="wedding-button add-guest-button">
+        + Registrera gäst
+    </a>
+
+</div>
+
+<div class="guest-table-wrapper">
+
+    @if (Model.Any())
+    {
+        <table class="guest-table">
+
+            <thead>
+                <tr>
+                    <th>Namn</th>
+                    <th>E-post</th>
+                    <th>Telefon</th>
+                    <th>Status</th>
+                    <th>Antal</th>
+                    <th>Åtgärder</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var guest in Model)
+                {
+                    <tr>
+
+                        <td>
+                            <strong>@guest.Name</strong>
+                        </td>
+
+                        <td>
+                            @guest.Email
+                        </td>
+
+                        <td>
+                            @(string.IsNullOrWhiteSpace(guest.PhoneNumber)
+                                                ? "-"
+                                                : guest.PhoneNumber)
+                </td>
+
+                        <td>
+
+                    @if (guest.WillAttend == true)
+                            {
+                                <span class="status-badge status-attending">
+                                    Kommer
+                                </span>
+                            }
+                            else if (guest.WillAttend == false)
+                            {
+                                <span class="status-badge status-not-attending">
+                                    Kommer inte
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="status-badge status-not-answered">
+                                    Inte svarat
+                                </span>
+                            }
+
+                        </td>
+
+                        <td>
+                            @guest.NumberOfAttendants
+                        </td>
+
+                        <td>
+
+                            <div class="guest-actions">
+
+                                <a asp-action="Details"
+                                   asp-route-id="@guest.Id">
+                                    Visa
+                                </a>
+
+                                <a asp-action="Edit"
+                                   asp-route-id="@guest.Id">
+                                    Ändra
+                                </a>
+
+                                <a asp-action="RSVP"
+                                   asp-route-id="@guest.Id">
+                                    OSA
+                                </a>
+
+                                <a asp-action="Delete"
+                                   asp-route-id="@guest.Id"
+                                   class="danger-link">
+                                    Ta bort
+                                </a>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+    }
+    else
+    {
+        <div class="empty-state">
+
+            <div class="empty-heart">♡</div>
+
+            <h2>Inga gäster hittades</h2>
+
+            <p>
+                Försök med en annan sökning eller registrera
+                en ny gäst.
+            </p>
+
+            <a asp-action="Create"
+               class="wedding-button">
+                Registrera gäst
+            </a>
+
+        </div>
+    }
+
+</div>

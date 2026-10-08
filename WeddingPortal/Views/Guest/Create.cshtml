@@ -1,4 +1,4 @@
-﻿@model WeddingPortal.Models.Guest
+﻿@* @model WeddingPortal.Models.Guest
 
 <h2>Register Guest</h2>
 
@@ -25,4 +25,104 @@
         Save
     </button>
 
-</form>
+</form> *@
+
+@model GuestCreateViewModel
+
+@{
+    ViewData["Title"] = "Registrera gäst";
+}
+
+<section class="form-page">
+
+    <div class="form-card">
+
+        <div class="form-header">
+            <span class="section-label">Välkommen</span>
+
+            <h1>Registrera gäst</h1>
+
+            <p>
+                Fyll i dina kontaktuppgifter för att registrera dig
+                inför vår stora dag.
+            </p>
+        </div>
+
+        <form asp-action="Create"
+              method="post">
+
+            <div asp-validation-summary="ModelOnly"
+                 class="validation-summary">
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Name">
+                    Namn
+                </label>
+
+                <input asp-for="Name"
+                       class="form-control"
+                       placeholder="Ditt namn" />
+
+                <span asp-validation-for="Name"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Email">
+                    E-post
+                </label>
+
+                <input asp-for="Email"
+                       class="form-control"
+                       placeholder="din@email.se" />
+
+                <span asp-validation-for="Email"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="PhoneNumber">
+                    Telefonnummer
+                </label>
+
+                <input asp-for="PhoneNumber"
+                       class="form-control"
+                       placeholder="070-123 45 67" />
+
+                <span asp-validation-for="PhoneNumber"
+                      class="field-validation">
+                </span>
+
+            </div>
+
+            <div class="form-actions">
+
+                <button type="submit"
+                        class="wedding-button">
+                    Registrera
+                </button>
+
+                <a asp-action="Index"
+                   class="wedding-button wedding-button-outline">
+                    Tillbaka
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

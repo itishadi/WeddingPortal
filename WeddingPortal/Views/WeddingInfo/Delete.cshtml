@@ -1,33 +1,7 @@
-﻿@* @model WeddingPortal.Models.Guest
-
-<h2>Delete Guest</h2>
-
-<p>
-    Are you sure you want to delete:
-</p>
-
-<h4>@Model.Name</h4>
-
-<form asp-action="DeleteConfirmed">
-
-    <input asp-for="Id"
-           type="hidden" />
-
-    <button class="btn btn-danger">
-        Delete
-    </button>
-
-    <a asp-action="Index"
-       class="btn btn-secondary">
-        Cancel
-    </a>
-
-</form> *@
-
-@model Guest
+﻿@model WeddingInfo
 
 @{
-    ViewData["Title"] = "Ta bort gäst";
+    ViewData["Title"] = "Ta bort bröllopsinformation";
 }
 
 <section class="delete-page">
@@ -42,17 +16,29 @@
             Bekräfta
         </span>
 
-        <h1>Ta bort gäst</h1>
+        <h1>Ta bort information</h1>
 
         <p>
-            Är du säker på att du vill ta bort följande gäst?
+            Är du säker på att du vill ta bort denna
+            bröllopsinformation?
         </p>
 
-        <div class="delete-guest-info">
+        <div class="delete-info">
 
-            <strong>@Model.Name</strong>
+            <div>
+                <strong>Välkomstmeddelande</strong>
+                <p>@Model.WelcomeMessage</p>
+            </div>
 
-            <span>@Model.Email</span>
+            <div>
+                <strong>Plats</strong>
+                <p>@Model.VenueInformation</p>
+            </div>
+
+            <div>
+                <strong>Kontakt</strong>
+                <p>@Model.ContactInformation</p>
+            </div>
 
         </div>
 
@@ -63,7 +49,8 @@
         <form asp-action="Delete"
               method="post">
 
-            <input asp-for="Id" type="hidden" />
+            <input asp-for="Id"
+                   type="hidden" />
 
             <div class="form-actions">
 

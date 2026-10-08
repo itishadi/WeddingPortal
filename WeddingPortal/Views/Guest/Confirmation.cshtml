@@ -1,4 +1,4 @@
-﻿@model WeddingPortal.Models.Guest
+﻿@* @model WeddingPortal.Models.Guest
 
 @if (Model.WillAttend)
 {
@@ -19,4 +19,97 @@ else
     <p>
         We appreciate your confirmation.
     </p>
+} *@
+
+@model Guest
+
+@{
+    ViewData["Title"] = "Tack för ditt svar";
 }
+
+<section class="confirmation-page">
+
+    <div class="confirmation-card">
+
+        <div class="confirmation-heart">
+            ♡
+        </div>
+
+        @if (Model.WillAttend == true)
+        {
+            <span class="section-label">
+                OSA registrerad
+            </span>
+
+            <h1>
+                Tack, @Model.Name!
+            </h1>
+
+            <p>
+                Vad roligt att du kommer och firar
+                vår stora dag tillsammans med oss.
+            </p>
+
+            <div class="confirmation-status">
+                ✓ Vi ses på bröllopet
+            </div>
+        }
+        else if (Model.WillAttend == false)
+        {
+            <span class="section-label">
+                OSA registrerad
+            </span>
+
+            <h1>
+                Tack för ditt svar, @Model.Name!
+            </h1>
+
+            <p>
+                Tack för att du meddelade oss.
+                Vi uppskattar verkligen ditt svar.
+            </p>
+
+            <div class="confirmation-status">
+                ♥ Tack för att du hörde av dig
+            </div>
+        }
+        else
+        {
+            <span class="section-label">
+                OSA
+            </span>
+
+            <h1>
+                Inget svar registrerat
+            </h1>
+
+            <p>
+                Du har ännu inte valt om du kommer
+                eller inte.
+            </p>
+
+            <a asp-action="RSVP"
+               asp-route-id="@Model.Id"
+               class="wedding-button">
+                Svara på OSA
+            </a>
+        }
+
+        <div class="confirmation-actions">
+
+            <a asp-controller="Home"
+               asp-action="Index"
+               class="wedding-button wedding-button-outline">
+                Tillbaka till startsidan
+            </a>
+
+            <a asp-action="Index"
+               class="text-link">
+                Visa gästlistan
+            </a>
+
+        </div>
+
+    </div>
+
+</section>

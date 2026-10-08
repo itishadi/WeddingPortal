@@ -1,4 +1,4 @@
-﻿@model WeddingPortal.Models.Event
+﻿@* @model WeddingPortal.Models.Event
 
 <h2>Delete Event</h2>
 
@@ -21,4 +21,74 @@
         Cancel
     </a>
 
-</form>
+</form> *@
+
+@model Event
+
+@{
+    ViewData["Title"] = "Ta bort evenemang";
+}
+
+<section class="delete-page">
+
+    <div class="delete-card">
+
+        <div class="delete-icon">
+            ♡
+        </div>
+
+        <span class="section-label">
+            Bekräfta
+        </span>
+
+        <h1>Ta bort evenemang</h1>
+
+        <p>
+            Är du säker på att du vill ta bort detta evenemang?
+        </p>
+
+        <div class="delete-guest-info">
+
+            <strong>
+                @Model.Title
+            </strong>
+
+            <span>
+                @Model.Location
+            </span>
+
+            <span>
+                @Model.EventDate.ToString("yyyy-MM-dd HH:mm")
+            </span>
+
+        </div>
+
+        <p class="delete-warning">
+            Denna åtgärd kan inte ångras.
+        </p>
+
+        <form asp-action="Delete"
+              method="post">
+
+            <input asp-for="Id"
+                   type="hidden" />
+
+            <div class="form-actions">
+
+                <button type="submit"
+                        class="wedding-button delete-button">
+                    Ja, ta bort
+                </button>
+
+                <a asp-action="Index"
+                   class="wedding-button wedding-button-outline">
+                    Avbryt
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>

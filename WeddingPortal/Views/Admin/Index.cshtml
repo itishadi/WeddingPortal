@@ -1,4 +1,4 @@
-﻿<h1>Administration Dashboard</h1>
+﻿@* <h1>Administration Dashboard</h1>
 
 @model WeddingPortal.ViewModels.AdminDashboardViewModel
 
@@ -74,3 +74,192 @@
 
 </div>
 
+ *@
+
+@model AdminDashboardViewModel
+
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<section class="page-header admin-header">
+
+    <span class="section-label">
+        Administration
+    </span>
+
+    <h1>Dashboard</h1>
+
+    <p>
+        Översikt över gäster, OSA-svar och evenemang.
+    </p>
+
+</section>
+
+<div class="admin-stat-grid">
+
+    <div class="admin-stat-card">
+
+        <span class="admin-stat-label">
+            Totala gäster
+        </span>
+
+        <strong class="admin-stat-number">
+            @Model.TotalGuests
+        </strong>
+
+        <span class="admin-stat-description">
+            Registrerade gäster
+        </span>
+
+    </div>
+
+    <div class="admin-stat-card">
+
+        <span class="admin-stat-label">
+            Kommer
+        </span>
+
+        <strong class="admin-stat-number">
+            @Model.AttendingGuests
+        </strong>
+
+        <span class="admin-stat-description">
+            Gäster som tackat ja
+        </span>
+
+    </div>
+
+    <div class="admin-stat-card">
+
+        <span class="admin-stat-label">
+            Kommer inte
+        </span>
+
+        <strong class="admin-stat-number">
+            @Model.NotAttendingGuests
+        </strong>
+
+        <span class="admin-stat-description">
+            Gäster som tackat nej
+        </span>
+
+    </div>
+
+    <div class="admin-stat-card">
+
+        <span class="admin-stat-label">
+            Inte svarat
+        </span>
+
+        <strong class="admin-stat-number">
+            @Model.NotAnsweredGuests
+        </strong>
+
+        <span class="admin-stat-description">
+            Väntar på OSA
+        </span>
+
+    </div>
+
+    <div class="admin-stat-card">
+
+        <span class="admin-stat-label">
+            Antal personer
+        </span>
+
+        <strong class="admin-stat-number">
+            @Model.TotalAttendants
+        </strong>
+
+        <span class="admin-stat-description">
+            Totalt antal deltagare
+        </span>
+
+    </div>
+
+    <div class="admin-stat-card">
+
+        <span class="admin-stat-label">
+            Evenemang
+        </span>
+
+        <strong class="admin-stat-number">
+            @Model.TotalEvents
+        </strong>
+
+        <span class="admin-stat-description">
+            Registrerade evenemang
+        </span>
+
+    </div>
+
+</div>
+
+<section class="admin-actions-section">
+
+    <div class="admin-section-header">
+
+        <div>
+            <span class="section-label">
+                Hantering
+            </span>
+
+            <h2>Snabblänkar</h2>
+        </div>
+
+    </div>
+
+    <div class="admin-action-grid">
+
+        <a asp-controller="Guest"
+           asp-action="Index"
+           class="admin-action-card">
+
+            <span class="admin-action-icon">
+                ♡
+            </span>
+
+            <strong>Hantera gäster</strong>
+
+            <span>
+                Sök, filtrera, ändra och ta bort gäster.
+            </span>
+
+        </a>
+
+        <a asp-controller="Event"
+           asp-action="Index"
+           class="admin-action-card">
+
+            <span class="admin-action-icon">
+                ♧
+            </span>
+
+            <strong>Hantera evenemang</strong>
+
+            <span>
+                Skapa och uppdatera evenemang.
+            </span>
+
+        </a>
+
+        <a asp-controller="WeddingInfo"
+           asp-action="Index"
+           class="admin-action-card">
+
+            <span class="admin-action-icon">
+                ✦
+            </span>
+
+            <strong>Bröllopsinformation</strong>
+
+            <span>
+                Hantera information om bröllopet.
+            </span>
+
+        </a>
+
+    </div>
+
+</section>

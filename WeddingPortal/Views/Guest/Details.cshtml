@@ -1,4 +1,4 @@
-﻿@model WeddingPortal.Models.Guest
+﻿@* @model WeddingPortal.Models.Guest
 
 <h2>Guest Details</h2>
 
@@ -12,4 +12,119 @@
 
 <p><strong>Attend:</strong> @Model.WillAttend</p>
 
-<p><strong>Message:</strong> @Model.Message</p>
+<p><strong>Message:</strong> @Model.Message</p> *@
+@model Guest
+
+@{
+    ViewData["Title"] = "Gästdetaljer";
+}
+
+<section class="details-page">
+
+    <div class="details-card">
+
+        <div class="details-header">
+            <span class="section-label">Gästinformation</span>
+
+            <h1>@Model.Name</h1>
+
+            <p>
+                Detaljer och OSA-information
+            </p>
+        </div>
+
+        <div class="details-list">
+
+            <div class="detail-item">
+                <span class="detail-label">Namn</span>
+                <span class="detail-value">@Model.Name</span>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">E-post</span>
+                <span class="detail-value">@Model.Email</span>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Telefon</span>
+                <span class="detail-value">
+                    @(string.IsNullOrWhiteSpace(Model.PhoneNumber)
+                                        ? "-"
+                                        : Model.PhoneNumber)
+                </span>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Antal personer</span>
+                <span class="detail-value">
+                    @Model.NumberOfAttendants
+                </span>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">OSA-status</span>
+
+                <span class="detail-value">
+
+                    @if (Model.WillAttend == true)
+                    {
+                        <span class="status-badge status-attending">
+                            Kommer
+                        </span>
+                    }
+                    else if (Model.WillAttend == false)
+                    {
+                        <span class="status-badge status-not-attending">
+                            Kommer inte
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="status-badge status-not-answered">
+                            Inte svarat
+                        </span>
+                    }
+
+                </span>
+            </div>
+
+            <div class="detail-item detail-message">
+
+                <span class="detail-label">
+                    Meddelande
+                </span>
+
+                <p class="detail-message-text">
+                    @(string.IsNullOrWhiteSpace(Model.Message)
+                                        ? "Inget meddelande."
+                                        : Model.Message)
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="details-actions">
+
+            <a asp-action="Edit"
+               asp-route-id="@Model.Id"
+               class="wedding-button">
+                Ändra
+            </a>
+
+            <a asp-action="RSVP"
+               asp-route-id="@Model.Id"
+               class="wedding-button wedding-button-outline">
+                Ändra OSA
+            </a>
+
+            <a asp-action="Index"
+               class="text-link">
+                ← Tillbaka till gästlistan
+            </a>
+
+        </div>
+
+    </div>
+
+</section>

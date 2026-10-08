@@ -1,4 +1,4 @@
-html {
+/*html {
   font-size: 14px;
 }
 
@@ -28,4 +28,934 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}*/
+
+html {
+    font-size: 16px;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #4d4141;
+    background: #fffaf8;
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+
+.wedding-navbar {
+    background: rgba(255, 250, 248, 0.97);
+    border-bottom: 1px solid #eadbd7;
+    padding: 1rem 0;
+}
+
+.wedding-brand {
+    color: #6f5555 !important;
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+    .wedding-brand span {
+        margin-right: 0.35rem;
+    }
+
+.wedding-navbar .nav-link {
+    color: #665555;
+    margin-left: 0.5rem;
+    padding: 0.55rem 0.8rem !important;
+    border-radius: 8px;
+    transition: 0.2s ease;
+}
+
+    .wedding-navbar .nav-link:hover {
+        color: #8d6262;
+        background: #f8eeeb;
+    }
+
+/* =========================
+   MAIN
+   ========================= */
+
+.main-content {
+    min-height: calc(100vh - 170px);
+    padding: 2rem 0 4rem;
+}
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero-section {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: -2rem 0 3rem;
+    padding: 5rem 1.5rem;
+    background: linear-gradient( rgba(255, 248, 245, 0.88), rgba(255, 248, 245, 0.94) );
+    border-bottom: 1px solid #eadbd7;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-small-title,
+.section-label {
+    display: block;
+    color: #a06f6f;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.hero-section h1,
+.page-header h1,
+.form-header h1,
+.details-header h1,
+.delete-card h1,
+.confirmation-card h1,
+.simple-page-card h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #5c4747;
+}
+
+.hero-section h1 {
+    font-size: clamp(2.7rem, 7vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-description {
+    max-width: 600px;
+    margin: 0 auto;
+    color: #756767;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.hero-divider {
+    margin: 2rem 0;
+    color: #a06f6f;
+    font-size: 2rem;
+}
+
+.hero-actions,
+.form-actions,
+.details-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.wedding-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0.7rem 1.4rem;
+    border: 1px solid #9b7070;
+    border-radius: 8px;
+    background: #9b7070;
+    color: white !important;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+    .wedding-button:hover {
+        background: #805b5b;
+        border-color: #805b5b;
+        transform: translateY(-1px);
+    }
+
+.wedding-button-outline {
+    background: transparent;
+    color: #805b5b !important;
+}
+
+    .wedding-button-outline:hover {
+        background: #f7ebe8;
+        color: #704f4f !important;
+    }
+
+.delete-button {
+    background: #a75d5d;
+    border-color: #a75d5d;
+}
+
+    .delete-button:hover {
+        background: #873f3f;
+        border-color: #873f3f;
+    }
+
+.text-link {
+    color: #8d6262;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    .text-link:hover {
+        color: #704b4b;
+        text-decoration: underline;
+    }
+
+/* =========================
+   WELCOME
+   ========================= */
+
+.welcome-section {
+    max-width: 900px;
+    margin: 0 auto 4rem;
+}
+
+.welcome-card {
+    padding: 3rem;
+    text-align: center;
+    background: white;
+    border: 1px solid #eadbd7;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(91, 65, 65, 0.06);
+}
+
+    .welcome-card h2 {
+        font-family: Georgia, serif;
+        color: #5c4747;
+        margin-bottom: 1rem;
+    }
+
+    .welcome-card p {
+        max-width: 650px;
+        margin: 0 auto 1.5rem;
+        line-height: 1.8;
+        color: #756767;
+    }
+
+/* =========================
+   PAGE HEADER
+   ========================= */
+
+.page-header {
+    max-width: 850px;
+    margin: 1rem auto 2.5rem;
+    text-align: center;
+}
+
+    .page-header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .page-header p {
+        color: #756767;
+        line-height: 1.7;
+    }
+
+/* =========================
+   FORMS
+   ========================= */
+
+.form-page {
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.form-card {
+    background: white;
+    padding: 3rem;
+    border: 1px solid #eadbd7;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(91, 65, 65, 0.06);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+    .form-header p {
+        color: #756767;
+    }
+
+.form-group {
+    margin-bottom: 1.3rem;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.45rem;
+        color: #5c4747;
+        font-weight: 600;
+    }
+
+.form-control,
+.form-select {
+    min-height: 46px;
+    border: 1px solid #ddcdca;
+    border-radius: 8px;
+    background: #fffdfc;
+}
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #a06f6f;
+        box-shadow: 0 0 0 0.2rem rgba(160, 111, 111, 0.12);
+    }
+
+textarea.form-control {
+    min-height: 120px;
+}
+
+.validation-summary,
+.field-validation {
+    color: #b34848;
+    font-size: 0.9rem;
+}
+
+.validation-summary {
+    margin-bottom: 1rem;
+}
+
+.field-validation {
+    display: block;
+    margin-top: 0.35rem;
+}
+
+/* =========================
+   GUEST LIST
+   ========================= */
+
+.guest-toolbar {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.guest-search-form {
+    flex: 1;
+}
+
+.search-group,
+.filter-group {
+    display: flex;
+    gap: 0.7rem;
+    margin-bottom: 0.7rem;
+}
+
+.search-group {
+    max-width: 650px;
+}
+
+.filter-group {
+    flex-wrap: wrap;
+}
+
+    .filter-group .form-select {
+        min-width: 180px;
+    }
+
+.add-guest-button {
+    white-space: nowrap;
+}
+
+.guest-table-wrapper {
+    overflow-x: auto;
+    background: white;
+    border: 1px solid #eadbd7;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(91, 65, 65, 0.05);
+}
+
+.guest-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+}
+
+    .guest-table th,
+    .guest-table td {
+        padding: 1rem;
+        border-bottom: 1px solid #eee3e0;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .guest-table th {
+        color: #6d5555;
+        background: #fcf5f2;
+        font-size: 0.9rem;
+    }
+
+    .guest-table tbody tr:hover {
+        background: #fffaf8;
+    }
+
+.guest-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+    .guest-actions a {
+        color: #8d6262;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+        .guest-actions a:hover {
+            text-decoration: underline;
+        }
+
+.danger-link {
+    color: #a14d4d !important;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.status-attending {
+    background: #e7f2e8;
+    color: #47704d;
+}
+
+.status-not-attending {
+    background: #f7e5e5;
+    color: #914f4f;
+}
+
+.status-not-answered {
+    background: #f3eee7;
+    color: #776957;
+}
+
+/* =========================
+   EVENTS
+   ========================= */
+
+.page-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.event-card {
+    display: flex;
+    gap: 1.2rem;
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid #eadbd7;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(91, 65, 65, 0.05);
+}
+
+.event-date {
+    flex: 0 0 65px;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: #f6e8e4;
+    color: #805b5b;
+}
+
+    .event-date span {
+        font-family: Georgia, serif;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .event-date small {
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+.event-content {
+    flex: 1;
+}
+
+    .event-content h2 {
+        margin-top: 0;
+        font-family: Georgia, serif;
+        color: #5c4747;
+    }
+
+.event-location,
+.event-time {
+    color: #756767;
+    margin-bottom: 0.4rem;
+}
+
+.event-description {
+    margin-top: 1rem;
+    line-height: 1.7;
+}
+
+.event-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.2rem;
+}
+
+    .event-actions a {
+        color: #8d6262;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+/* =========================
+   DETAILS
+   ========================= */
+
+.details-page,
+.delete-page,
+.confirmation-page,
+.simple-page {
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.details-card,
+.delete-card,
+.confirmation-card,
+.simple-page-card {
+    background: white;
+    padding: 3rem;
+    border: 1px solid #eadbd7;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(91, 65, 65, 0.06);
+}
+
+.details-header,
+.confirmation-card,
+.simple-page-card {
+    text-align: center;
+}
+
+.details-header {
+    margin-bottom: 2rem;
+}
+
+    .details-header p {
+        color: #756767;
+    }
+
+.details-list {
+    border-top: 1px solid #eee3e0;
+}
+
+.detail-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee3e0;
+}
+
+.detail-label {
+    color: #806b6b;
+    font-weight: 700;
+}
+
+.detail-value {
+    color: #4d4141;
+}
+
+.detail-message {
+    display: block;
+}
+
+.detail-message-text {
+    margin-top: 0.6rem;
+    line-height: 1.7;
+}
+
+.details-actions {
+    margin-top: 2rem;
+}
+
+/* =========================
+   WEDDING INFO
+   ========================= */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.info-card {
+    padding: 2rem;
+    text-align: center;
+    background: white;
+    border: 1px solid #eadbd7;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(91, 65, 65, 0.05);
+}
+
+.info-card-icon,
+.confirmation-heart,
+.empty-heart {
+    color: #a06f6f;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.info-card h2 {
+    font-family: Georgia, serif;
+    color: #5c4747;
+}
+
+.info-card p {
+    line-height: 1.8;
+    color: #756767;
+    white-space: pre-line;
+}
+
+/* =========================
+   EMPTY STATE
+   ========================= */
+
+.empty-state {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: white;
+    border: 1px dashed #d9c7c3;
+    border-radius: 14px;
+}
+
+    .empty-state h2 {
+        font-family: Georgia, serif;
+        color: #5c4747;
+    }
+
+    .empty-state p {
+        color: #756767;
+        margin-bottom: 1.5rem;
+    }
+
+/* =========================
+   DELETE
+   ========================= */
+
+.delete-card {
+    text-align: center;
+}
+
+.delete-icon {
+    color: #a06f6f;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.delete-card > p {
+    color: #756767;
+}
+
+.delete-guest-info,
+.delete-info {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: #fcf5f2;
+    border-radius: 10px;
+}
+
+.delete-guest-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.delete-info {
+    text-align: left;
+}
+
+    .delete-info strong {
+        color: #5c4747;
+    }
+
+    .delete-info p {
+        color: #756767;
+        white-space: pre-line;
+    }
+
+.delete-warning {
+    color: #a14d4d !important;
+    font-weight: 600;
+}
+
+/* =========================
+   CONFIRMATION
+   ========================= */
+
+.confirmation-card {
+    padding: 4rem 3rem;
+}
+
+.confirmation-heart {
+    font-size: 4rem;
+}
+
+.confirmation-card h1 {
+    font-size: 2.8rem;
+}
+
+.confirmation-card > p {
+    max-width: 600px;
+    margin: 1rem auto;
+    line-height: 1.8;
+    color: #756767;
+}
+
+.confirmation-status {
+    display: inline-block;
+    margin: 1.5rem 0;
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    background: #f7ebe8;
+    color: #805b5b;
+    font-weight: 700;
+}
+
+.confirmation-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* =========================
+   ADMIN
+   ========================= */
+
+.admin-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 3rem;
+}
+
+.admin-stat-card {
+    padding: 1.7rem;
+    background: white;
+    border: 1px solid #eadbd7;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(91, 65, 65, 0.05);
+}
+
+.admin-stat-label,
+.admin-stat-description {
+    display: block;
+}
+
+.admin-stat-label {
+    color: #806b6b;
+    font-weight: 700;
+}
+
+.admin-stat-number {
+    display: block;
+    margin: 0.5rem 0;
+    font-family: Georgia, serif;
+    font-size: 2.5rem;
+    color: #805b5b;
+}
+
+.admin-stat-description {
+    color: #8b7b7b;
+    font-size: 0.9rem;
+}
+
+.admin-actions-section {
+    margin-top: 2rem;
+}
+
+.admin-section-header h2 {
+    font-family: Georgia, serif;
+    color: #5c4747;
+}
+
+.admin-action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.admin-action-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid #eadbd7;
+    border-radius: 14px;
+    color: #4d4141;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+    .admin-action-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(91, 65, 65, 0.08);
+        color: #4d4141;
+    }
+
+.admin-action-icon {
+    color: #a06f6f;
+    font-size: 1.8rem;
+}
+
+.admin-action-card strong {
+    color: #5c4747;
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+}
+
+.admin-action-card span:last-child {
+    color: #756767;
+    line-height: 1.5;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.wedding-footer {
+    padding: 2.5rem 0;
+    border-top: 1px solid #eadbd7;
+    background: #fdf5f2;
+    color: #756767;
+}
+
+    .wedding-footer p {
+        font-family: Georgia, serif;
+        color: #5c4747;
+        font-size: 1.1rem;
+    }
+
+    .wedding-footer small {
+        color: #8b7b7b;
+    }
+
+    .wedding-footer a {
+        color: #8d6262;
+        text-decoration: none;
+    }
+
+        .wedding-footer a:hover {
+            text-decoration: underline;
+        }
+
+.footer-heart {
+    color: #a06f6f;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .main-content {
+        padding-top: 1rem;
+    }
+
+    .hero-section {
+        min-height: 500px;
+        margin-top: -1rem;
+        padding: 4rem 1rem;
+    }
+
+        .hero-section h1 {
+            font-size: 2.6rem;
+        }
+
+    .welcome-card,
+    .form-card,
+    .details-card,
+    .delete-card,
+    .confirmation-card,
+    .simple-page-card {
+        padding: 2rem 1.3rem;
+    }
+
+    .page-header h1 {
+        font-size: 2.4rem;
+    }
+
+    .search-group,
+    .filter-group {
+        flex-direction: column;
+    }
+
+    .search-group,
+    .filter-group,
+    .add-guest-button {
+        width: 100%;
+        max-width: none;
+    }
+
+    .detail-item {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+    }
+
+    .event-card {
+        flex-direction: column;
+    }
+
+    .event-date {
+        width: 65px;
+    }
+
+    .page-actions {
+        justify-content: flex-start;
+    }
+
+    .hero-actions,
+    .form-actions,
+    .details-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+        .hero-actions .wedding-button,
+        .form-actions .wedding-button,
+        .details-actions .wedding-button {
+            width: 100%;
+        }
 }

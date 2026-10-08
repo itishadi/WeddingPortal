@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WeddingPortal.Models.Event>
+﻿@* @model IEnumerable<WeddingPortal.Models.Event>
 
 <h2>Events</h2>
 
@@ -60,4 +60,124 @@
 
     </tbody>
 
-</table>
+</table> *@
+
+@model IEnumerable<Event>
+
+@{
+    ViewData["Title"] = "Evenemang";
+}
+
+<section class="page-header">
+
+    <span class="section-label">
+        Vår stora dag
+    </span>
+
+    <h1>Evenemang</h1>
+
+    <p>
+        Här hittar du information om bröllopets olika delar.
+    </p>
+
+</section>
+
+<div class="page-actions">
+
+    <a asp-action="Create"
+       class="wedding-button">
+        + Lägg till evenemang
+    </a>
+
+</div>
+
+@if (Model.Any())
+{
+    <div class="event-grid">
+
+        @foreach (var item in Model)
+        {
+            <article class="event-card">
+
+                <div class="event-date">
+
+                    <span>
+                        @item.EventDate.ToString("dd")
+                    </span>
+
+                    <small>
+                        @item.EventDate.ToString("MMM")
+                    </small>
+
+                </div>
+
+                <div class="event-content">
+
+                    <h2>
+                        @item.Title
+                    </h2>
+
+                    <p class="event-location">
+                        📍 @item.Location
+                    </p>
+
+                    <p class="event-time">
+                        🕐 @item.EventDate.ToString("yyyy-MM-dd HH:mm")
+                    </p>
+
+                    @if (!string.IsNullOrWhiteSpace(item.Description))
+                    {
+                        <p class="event-description">
+                            @item.Description
+                        </p>
+                    }
+
+                    <div class="event-actions">
+
+                        <a asp-action="Details"
+                           asp-route-id="@item.Id">
+                            Visa
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@item.Id">
+                            Ändra
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@item.Id"
+                           class="danger-link">
+                            Ta bort
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+        }
+
+    </div>
+}
+else
+{
+    <div class="empty-state">
+
+        <div class="empty-heart">
+            ♡
+        </div>
+
+        <h2>Inga evenemang ännu</h2>
+
+        <p>
+            Lägg till det första evenemanget för bröllopsdagen.
+        </p>
+
+        <a asp-action="Create"
+           class="wedding-button">
+            Lägg till evenemang
+        </a>
+
+    </div>
+}
+```

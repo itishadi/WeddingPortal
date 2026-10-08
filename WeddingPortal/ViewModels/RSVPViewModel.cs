@@ -1,39 +1,10 @@
-﻿//using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-//namespace WeddingPortal.Models
-//{
-//    public class Guest
-//    {
-//        public int Id { get; set; }
-
-//        [Required]
-//        [StringLength(50)]
-//        public string Name { get; set; } = "";
-
-//        [Required]
-//        [EmailAddress]
-//        public string Email { get; set; } = "";
-
-//        [Phone]
-//        public string? PhoneNumber { get; set; }
-
-//        [Range(0, 10)]
-//        public int NumberOfAttendants { get; set; }
-
-//        public bool WillAttend { get; set; }
-
-//        [StringLength(500)]
-//        public string? Message { get; set; }
-//    }
-//}
-
-using System.ComponentModel.DataAnnotations;
-
-namespace WeddingPortal.Models
+namespace WeddingPortal.ViewModels
 {
-    public class Guest
+    public class RSVPViewModel
     {
-        public int Id { get; set; }
+        public int GuestId { get; set; }
 
         [Required(ErrorMessage = "Name is required.")]
         [StringLength(50, ErrorMessage = "Name cannot be longer than 50 characters.")]
@@ -49,6 +20,7 @@ namespace WeddingPortal.Models
         [Range(0, 10, ErrorMessage = "Number of attendants must be between 0 and 10.")]
         public int NumberOfAttendants { get; set; }
 
+        [Required(ErrorMessage = "Please select whether you will attend.")]
         public bool? WillAttend { get; set; }
 
         [StringLength(500, ErrorMessage = "Message cannot be longer than 500 characters.")]

@@ -1,4 +1,4 @@
-﻿@model WeddingPortal.Models.Event
+﻿@* @model WeddingPortal.Models.Event
 
 <h2>@Model.Title</h2>
 
@@ -15,4 +15,106 @@
 <p>
     <strong>Description:</strong>
     @Model.Description
-</p>
+</p> *@
+@model Event
+
+@{
+    ViewData["Title"] = "Evenemangsdetaljer";
+}
+
+<section class="details-page">
+
+    <div class="details-card">
+
+        <div class="details-header">
+
+            <span class="section-label">
+                Evenemang
+            </span>
+
+            <h1>@Model.Title</h1>
+
+            <p>
+                Information om evenemanget
+            </p>
+
+        </div>
+
+        <div class="details-list">
+
+            <div class="detail-item">
+
+                <span class="detail-label">
+                    Plats
+                </span>
+
+                <span class="detail-value">
+                    @Model.Location
+                </span>
+
+            </div>
+
+            <div class="detail-item">
+
+                <span class="detail-label">
+                    Datum
+                </span>
+
+                <span class="detail-value">
+                    @Model.EventDate.ToString("yyyy-MM-dd")
+                </span>
+
+            </div>
+
+            <div class="detail-item">
+
+                <span class="detail-label">
+                    Tid
+                </span>
+
+                <span class="detail-value">
+                    @Model.EventDate.ToString("HH:mm")
+                </span>
+
+            </div>
+
+            <div class="detail-item detail-message">
+
+                <span class="detail-label">
+                    Beskrivning
+                </span>
+
+                <p class="detail-message-text">
+                    @(string.IsNullOrWhiteSpace(Model.Description)
+                                        ? "Ingen beskrivning."
+                                        : Model.Description)
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="details-actions">
+
+            <a asp-action="Edit"
+               asp-route-id="@Model.Id"
+               class="wedding-button">
+                Ändra
+            </a>
+
+            <a asp-action="Delete"
+               asp-route-id="@Model.Id"
+               class="wedding-button wedding-button-outline">
+                Ta bort
+            </a>
+
+            <a asp-action="Index"
+               class="text-link">
+                ← Tillbaka till evenemang
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
