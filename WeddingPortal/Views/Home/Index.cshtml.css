@@ -1,6 +1,13 @@
-﻿namespace WeddingPortal.Views.Home
-{
-    public class Index
-    {
-    }
+﻿.hero-image-container {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.hero-main-image {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }

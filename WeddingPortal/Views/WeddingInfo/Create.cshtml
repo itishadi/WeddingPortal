@@ -23,10 +23,77 @@
         </div>
 
         <form asp-action="Create"
-              method="post">
+              method="post"
+              enctype="multipart/form-data">
 
             <div asp-validation-summary="ModelOnly"
                  class="validation-summary">
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="EventId">
+                    Evenemang
+                </label>
+
+                <select asp-for="EventId"
+                        asp-items="ViewBag.Events"
+                        class="form-control">
+
+                    <option value="">
+                        Välj evenemang
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="HeroTitle">
+                    Titel på startsidan
+                </label>
+
+                <input asp-for="HeroTitle"
+                       class="form-control" />
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="HeroSubtitle">
+                    Underrubrik på startsidan
+                </label>
+
+                <input asp-for="HeroSubtitle"
+                       class="form-control" />
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="HeroDescription">
+                    Beskrivning på startsidan
+                </label>
+
+                <textarea asp-for="HeroDescription"
+                          class="form-control"
+                          rows="5">
+                </textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="ImageFile">
+                    Bild
+                </label>
+
+                <input asp-for="ImageFile"
+                       type="file"
+                       class="form-control"
+                       accept="image/*" />
+
             </div>
 
             <div class="form-group">
@@ -37,13 +104,8 @@
 
                 <textarea asp-for="WelcomeMessage"
                           class="form-control"
-                          rows="6"
-                          placeholder="Skriv ett välkomstmeddelande...">
+                          rows="6">
                 </textarea>
-
-                <span asp-validation-for="WelcomeMessage"
-                      class="field-validation">
-                </span>
 
             </div>
 
@@ -55,13 +117,8 @@
 
                 <textarea asp-for="VenueInformation"
                           class="form-control"
-                          rows="6"
-                          placeholder="Skriv information om platsen...">
+                          rows="6">
                 </textarea>
-
-                <span asp-validation-for="VenueInformation"
-                      class="field-validation">
-                </span>
 
             </div>
 
@@ -73,13 +130,8 @@
 
                 <textarea asp-for="ContactInformation"
                           class="form-control"
-                          rows="5"
-                          placeholder="Skriv kontaktinformation...">
+                          rows="5">
                 </textarea>
-
-                <span asp-validation-for="ContactInformation"
-                      class="field-validation">
-                </span>
 
             </div>
 

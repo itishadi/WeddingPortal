@@ -24,17 +24,29 @@ namespace WeddingPortal.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
+                        .HasMaxLength(1000)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("EventDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("HeroText")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsFeatured")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Location")
                         .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Subtitle")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -67,7 +79,7 @@ namespace WeddingPortal.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("WillAttend")
+                    b.Property<bool?>("WillAttend")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -83,19 +95,51 @@ namespace WeddingPortal.Migrations
 
                     b.Property<string>("ContactInformation")
                         .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("EventId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("HeroDescription")
+                        .HasMaxLength(2000)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("HeroSubtitle")
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("HeroTitle")
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImagePath")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("VenueInformation")
                         .IsRequired()
+                        .HasMaxLength(1000)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("WelcomeMessage")
                         .IsRequired()
+                        .HasMaxLength(1000)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EventId");
+
                     b.ToTable("WeddingInfos");
+                });
+
+            modelBuilder.Entity("WeddingPortal.Models.WeddingInfo", b =>
+                {
+                    b.HasOne("WeddingPortal.Models.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId");
+
+                    b.Navigation("Event");
                 });
 #pragma warning restore 612, 618
         }

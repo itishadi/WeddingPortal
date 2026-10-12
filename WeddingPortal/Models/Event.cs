@@ -1,25 +1,4 @@
-﻿//using System.ComponentModel.DataAnnotations;
-
-//namespace WeddingPortal.Models
-//{
-//    public class Event
-//    {
-//        public int Id { get; set; }
-
-//        [Required]
-//        public string Title { get; set; } = "";
-
-//        [Required]
-//        public string Location { get; set; } = "";
-
-//        [Required]
-//        public DateTime EventDate { get; set; }
-
-//        public string? Description { get; set; }
-//    }
-//}
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace WeddingPortal.Models
 {
@@ -41,5 +20,11 @@ namespace WeddingPortal.Models
 
         [StringLength(1000, ErrorMessage = "Description cannot be longer than 1000 characters.")]
         public string? Description { get; set; }
+
+        public bool IsFeatured { get; set; }
+
+        public string? Subtitle { get; set; }
+
+        public string? HeroText { get; set; }
     }
 }

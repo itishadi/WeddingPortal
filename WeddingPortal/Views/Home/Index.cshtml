@@ -1,13 +1,4 @@
-﻿@* <h1>Welcome to Wedding Portal</h1>
-
-<p>
-    Welcome to our wedding website.
-</p>
-
-<p>
-    Here you can register, RSVP and
-    view event information.
-</p> *@
+﻿@model WeddingPortal.ViewModels.HomeViewModel
 
 @{
     ViewData["Title"] = "Hem";
@@ -18,17 +9,35 @@
     <div class="hero-content">
 
         <span class="hero-small-title">
-            Vår stora dag
+            @(Model.FeaturedWeddingInfo?.HeroSubtitle
+                        ?? "Vår stora dag")
         </span>
 
         <h1>
-            Välkommen till vårt bröllop
+            @(Model.FeaturedWeddingInfo?.HeroTitle
+                        ?? Model.FeaturedWeddingInfo?.WelcomeMessage
+                        ?? "Välkommen")
         </h1>
 
         <p class="hero-description">
-            Vi är så glada att få dela denna speciella dag
-            med våra nära och kära.
+            @(Model.FeaturedWeddingInfo?.HeroDescription
+                        ?? Model.FeaturedWeddingInfo?.VenueInformation)
         </p>
+
+        @if (Model.FeaturedWeddingInfo?.Event != null)
+        {
+            <div class="hero-description">
+
+                <strong>📍</strong>
+                @Model.FeaturedWeddingInfo.Event.Location
+
+                <br />
+
+                <strong>📅</strong>
+                @Model.FeaturedWeddingInfo.Event.EventDate
+
+            </div>
+        }
 
         <div class="hero-divider">
             <span>♡</span>
@@ -37,7 +46,7 @@
         <div class="hero-actions">
 
             <a asp-controller="Guest"
-               asp-action="RSVP"
+               asp-action="Create"
                class="wedding-button">
                 OSA
             </a>
@@ -54,29 +63,48 @@
 
 </section>
 
-<section class="welcome-section">
+@if (Model.FeaturedWeddingInfo != null)
+{
+    <section class="welcome-section">
 
-    <div class="welcome-card">
+        <div class="welcome-card">
 
-        <span class="section-label">
-            Kärlek · Glädje · Gemenskap
-        </span>
+            @if (Model.FeaturedWeddingInfo.Event != null)
+            {
+                <h2>
+                    @Model.FeaturedWeddingInfo.Event.Title
+                </h2>
 
-        <h2>
-            Vi längtar efter att fira med dig
-        </h2>
+                <p>
+                    📍 @Model.FeaturedWeddingInfo.Event.Location
+                </p>
 
-        <p>
-            Här hittar du all information om vår bröllopsdag,
-            evenemang och möjlighet att svara på vår OSA.
-        </p>
+                <p>
+                    📅 @Model.FeaturedWeddingInfo.Event.EventDate
+                </p>
 
-        <a asp-controller="WeddingInfo"
-           asp-action="Index"
-           class="text-link">
-            Läs mer om bröllopet →
-        </a>
+                <hr />
+            }
 
-    </div>
+            <h3>Välkommen</h3>
 
-</section>
+            <p>
+                @Model.FeaturedWeddingInfo.WelcomeMessage
+            </p>
+
+            <h3>Platsinformation</h3>
+
+            <p>
+                @Model.FeaturedWeddingInfo.VenueInformation
+            </p>
+
+            <h3>Kontakt</h3>
+
+            <p>
+                @Model.FeaturedWeddingInfo.ContactInformation
+            </p>
+
+        </div>
+
+    </section>
+}

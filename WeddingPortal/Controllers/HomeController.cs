@@ -1,64 +1,47 @@
-//using System.Diagnostics;
-//using Microsoft.AspNetCore.Mvc;
-//using WeddingPortal.Models;
-
-//namespace WeddingPortal.Controllers
-//{
-//    public class HomeController : Controller
-//    {
-//        private readonly ILogger<HomeController> _logger;
-
-//        public HomeController(ILogger<HomeController> logger)
-//        {
-//            _logger = logger;
-//        }
-
-//        public IActionResult Index()
-//        {
-//            return View();
-//        }
-
-//        public IActionResult Privacy()
-//        {
-//            return View();
-//        }
-
-//        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-//        public IActionResult Error()
-//        {
-//            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-//        }
-//    }
-//}
-
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using WeddingPortal.Data;
 using WeddingPortal.Models;
+using WeddingPortal.ViewModels;
 
 namespace WeddingPortal.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            ILogger<HomeController> logger,
+            ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
-        // GET: /
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var featuredWeddingInfo = await _context.WeddingInfos
+                .Include(w => w.Event)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(w =>
+                    w.Event != null &&
+                    w.Event.IsFeatured);
+
+            var model = new HomeViewModel
+            {
+                FeaturedWeddingInfo = featuredWeddingInfo
+            };
+
+            return View(model);
         }
 
-        // GET: /Home/Privacy
         public IActionResult Privacy()
         {
             return View();
         }
 
-        // GET: /Home/Error
         [ResponseCache(
             Duration = 0,
             Location = ResponseCacheLocation.None,
