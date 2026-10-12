@@ -87,6 +87,26 @@ namespace WeddingPortal.Migrations
                     b.ToTable("Guests");
                 });
 
+            modelBuilder.Entity("WeddingPortal.Models.WeddingImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("WeddingInfoId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WeddingInfoId");
+
+                    b.ToTable("WeddingImages");
+                });
+
             modelBuilder.Entity("WeddingPortal.Models.WeddingInfo", b =>
                 {
                     b.Property<int>("Id")
@@ -102,18 +122,12 @@ namespace WeddingPortal.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("HeroDescription")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("HeroSubtitle")
-                        .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("HeroTitle")
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ImagePath")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("VenueInformation")
@@ -133,6 +147,17 @@ namespace WeddingPortal.Migrations
                     b.ToTable("WeddingInfos");
                 });
 
+            modelBuilder.Entity("WeddingPortal.Models.WeddingImage", b =>
+                {
+                    b.HasOne("WeddingPortal.Models.WeddingInfo", "WeddingInfo")
+                        .WithMany("Images")
+                        .HasForeignKey("WeddingInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("WeddingInfo");
+                });
+
             modelBuilder.Entity("WeddingPortal.Models.WeddingInfo", b =>
                 {
                     b.HasOne("WeddingPortal.Models.Event", "Event")
@@ -140,6 +165,11 @@ namespace WeddingPortal.Migrations
                         .HasForeignKey("EventId");
 
                     b.Navigation("Event");
+                });
+
+            modelBuilder.Entity("WeddingPortal.Models.WeddingInfo", b =>
+                {
+                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

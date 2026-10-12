@@ -59,6 +59,32 @@
 
         </div>
 
+        @if (Model.FeaturedWeddingInfo?.Images.Any() == true)
+        {
+            <section class="home-gallery">
+
+                <h2 class="gallery-title">
+                    Våra minnen
+                </h2>
+
+                <div class="gallery-grid">
+
+                    @foreach (var image in Model.FeaturedWeddingInfo.Images)
+                    {
+                        <div class="gallery-card">
+
+                            <img src="@image.ImagePath"
+                                 alt="Bröllopsbild"
+                                 class="gallery-image" />
+
+                        </div>
+                    }
+
+                </div>
+
+            </section>
+        }
+
     </div>
 
 </section>

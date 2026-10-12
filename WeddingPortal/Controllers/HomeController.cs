@@ -24,6 +24,7 @@ namespace WeddingPortal.Controllers
         {
             var featuredWeddingInfo = await _context.WeddingInfos
                 .Include(w => w.Event)
+                .Include(w => w.Images)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(w =>
                     w.Event != null &&

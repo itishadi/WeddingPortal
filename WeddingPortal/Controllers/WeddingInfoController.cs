@@ -15,11 +15,11 @@ namespace WeddingPortal.Controllers
             _context = context;
         }
 
-        // GET: WeddingInfo
         public async Task<IActionResult> Index()
         {
             var featuredWeddingInfo = await _context.WeddingInfos
                 .Include(w => w.Event)
+                .Include(w => w.Images)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(w =>
                     w.Event != null &&
@@ -36,7 +36,6 @@ namespace WeddingPortal.Controllers
             });
         }
 
-        // GET: WeddingInfo/Create
         public IActionResult Create()
         {
             ViewBag.Events = new SelectList(
@@ -47,7 +46,6 @@ namespace WeddingPortal.Controllers
             return View();
         }
 
-        // POST: WeddingInfo/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(WeddingInfo weddingInfo)
@@ -67,10 +65,44 @@ namespace WeddingPortal.Controllers
 
             await _context.SaveChangesAsync();
 
+            if (weddingInfo.ImageFiles.Any())
+            {
+                string uploadFolder = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    "images");
+
+                Directory.CreateDirectory(uploadFolder);
+
+                foreach (var file in weddingInfo.ImageFiles)
+                {
+                    string fileName =
+                        Guid.NewGuid() +
+                        Path.GetExtension(file.FileName);
+
+                    string filePath =
+                        Path.Combine(uploadFolder, fileName);
+
+                    using (var stream =
+                        new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+
+                    _context.WeddingImages.Add(
+                        new WeddingImage
+                        {
+                            WeddingInfoId = weddingInfo.Id,
+                            ImagePath = "/images/" + fileName
+                        });
+                }
+
+                await _context.SaveChangesAsync();
+            }
+
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: WeddingInfo/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,7 +110,9 @@ namespace WeddingPortal.Controllers
                 return NotFound();
             }
 
-            var weddingInfo = await _context.WeddingInfos.FindAsync(id);
+            var weddingInfo = await _context.WeddingInfos
+                .Include(w => w.Images)
+                .FirstOrDefaultAsync(w => w.Id == id);
 
             if (weddingInfo == null)
             {
@@ -94,7 +128,6 @@ namespace WeddingPortal.Controllers
             return View(weddingInfo);
         }
 
-        // POST: WeddingInfo/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(
@@ -117,7 +150,9 @@ namespace WeddingPortal.Controllers
                 return View(weddingInfo);
             }
 
-            var existingInfo = await _context.WeddingInfos.FindAsync(id);
+            var existingInfo = await _context.WeddingInfos
+                .Include(w => w.Images)
+                .FirstOrDefaultAsync(w => w.Id == id);
 
             if (existingInfo == null)
             {
@@ -125,21 +160,50 @@ namespace WeddingPortal.Controllers
             }
 
             existingInfo.EventId = weddingInfo.EventId;
-
             existingInfo.HeroTitle = weddingInfo.HeroTitle;
             existingInfo.HeroSubtitle = weddingInfo.HeroSubtitle;
             existingInfo.HeroDescription = weddingInfo.HeroDescription;
-
             existingInfo.WelcomeMessage = weddingInfo.WelcomeMessage;
             existingInfo.VenueInformation = weddingInfo.VenueInformation;
             existingInfo.ContactInformation = weddingInfo.ContactInformation;
+
+            if (weddingInfo.ImageFiles.Any())
+            {
+                string uploadFolder = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    "images");
+
+                Directory.CreateDirectory(uploadFolder);
+
+                foreach (var file in weddingInfo.ImageFiles)
+                {
+                    string fileName =
+                        Guid.NewGuid() +
+                        Path.GetExtension(file.FileName);
+
+                    string filePath =
+                        Path.Combine(uploadFolder, fileName);
+
+                    using (var stream =
+                        new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+
+                    existingInfo.Images.Add(
+                        new WeddingImage
+                        {
+                            ImagePath = "/images/" + fileName
+                        });
+                }
+            }
 
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: WeddingInfo/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -148,9 +212,10 @@ namespace WeddingPortal.Controllers
             }
 
             var weddingInfo = await _context.WeddingInfos
-                .Include(w => w.Event)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(i => i.Id == id);
+    .Include(w => w.Event)
+    .Include(w => w.Images)
+    .AsNoTracking()
+    .FirstOrDefaultAsync(w => w.Id == id);
 
             if (weddingInfo == null)
             {
@@ -160,13 +225,14 @@ namespace WeddingPortal.Controllers
             return View(weddingInfo);
         }
 
-        // POST: WeddingInfo/Delete/5
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var weddingInfo = await _context.WeddingInfos.FindAsync(id);
+            var weddingInfo = await _context.WeddingInfos
+                .Include(w => w.Images)
+                .FirstOrDefaultAsync(w => w.Id == id);
 
             if (weddingInfo != null)
             {
@@ -175,6 +241,43 @@ namespace WeddingPortal.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> DeleteImage(int id)
+        {
+            var image = await _context.WeddingImages
+                .FindAsync(id);
+
+            if (image == null)
+            {
+                return NotFound();
+            }
+
+            int weddingInfoId = image.WeddingInfoId;
+
+            string? filePath = null;
+
+            if (!string.IsNullOrWhiteSpace(image.ImagePath))
+            {
+                filePath = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    image.ImagePath.TrimStart('/'));
+            }
+
+            _context.WeddingImages.Remove(image);
+
+            await _context.SaveChangesAsync();
+
+            if (!string.IsNullOrWhiteSpace(filePath)
+                && System.IO.File.Exists(filePath))
+            {
+                System.IO.File.Delete(filePath);
+            }
+
+            return RedirectToAction(
+                nameof(Edit),
+                new { id = weddingInfoId });
         }
     }
 }

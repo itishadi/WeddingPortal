@@ -8,35 +8,33 @@ namespace WeddingPortal.Models
     {
         public int Id { get; set; }
 
-        // Koppling till Event
         public int? EventId { get; set; }
 
         public Event? Event { get; set; }
 
-        [Required(ErrorMessage = "Welcome message is required.")]
+        [Required]
         [StringLength(1000)]
         public string WelcomeMessage { get; set; } = "";
 
-        [Required(ErrorMessage = "Venue information is required.")]
+        [Required]
         [StringLength(1000)]
         public string VenueInformation { get; set; } = "";
 
-        [Required(ErrorMessage = "Contact information is required.")]
+        [Required]
         [StringLength(500)]
         public string ContactInformation { get; set; } = "";
 
-        [StringLength(200)]
         public string? HeroTitle { get; set; }
 
-        [StringLength(200)]
         public string? HeroSubtitle { get; set; }
 
-        [StringLength(2000)]
         public string? HeroDescription { get; set; }
 
-        public string? ImagePath { get; set; }
+        // Galleri
+        public List<WeddingImage> Images { get; set; } = new();
 
+        // Uppladdade filer
         [NotMapped]
-        public IFormFile? ImageFile { get; set; }
+        public List<IFormFile> ImageFiles { get; set; } = new();
     }
 }

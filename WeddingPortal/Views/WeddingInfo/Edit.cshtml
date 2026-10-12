@@ -87,16 +87,61 @@
 
             <div class="form-group">
 
-                <label asp-for="ImageFile">
-                    Byt bild
+                <label>
+                    Bilder
                 </label>
 
-                <input asp-for="ImageFile"
-                       type="file"
-                       class="form-control"
-                       accept="image/*" />
+                <label class="upload-area">
+
+                    <span class="upload-icon">📸</span>
+
+                    <span class="upload-title">
+                        Välj bilder
+                    </span>
+
+                    <span class="upload-text">
+                        Klicka här eller dra bilder hit
+                    </span>
+
+                    <input asp-for="ImageFiles"
+                           type="file"
+                           multiple
+                           accept="image/*"
+                           class="upload-input" />
+
+                </label>
 
             </div>
+
+            @if (Model.Images.Any())
+            {
+                <div class="existing-images">
+
+                    <h3>Befintliga bilder</h3>
+
+                    <div class="image-gallery">
+
+                        @foreach (var image in Model.Images)
+                        {
+                            <div class="image-card">
+
+                                <img src="@image.ImagePath"
+                                     alt="Bröllopsbild"
+                                     class="gallery-image" />
+
+                                <a asp-action="DeleteImage"
+                                   asp-route-id="@image.Id"
+                                   class="wedding-button wedding-button-outline">
+                                    Ta bort
+                                </a>
+
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+            }
 
             <div class="form-group">
 

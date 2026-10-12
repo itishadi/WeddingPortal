@@ -85,14 +85,19 @@
 
             <div class="form-group">
 
-                <label asp-for="ImageFile">
-                    Bild
+                <label asp-for="ImageFiles">
+                    Bilder
                 </label>
 
-                <input asp-for="ImageFile"
+                <input asp-for="ImageFiles"
                        type="file"
-                       class="form-control"
-                       accept="image/*" />
+                       multiple
+                       accept="image/*"
+                       class="form-control" />
+
+                <small class="text-muted">
+                    Du kan välja en eller flera bilder.
+                </small>
 
             </div>
 
